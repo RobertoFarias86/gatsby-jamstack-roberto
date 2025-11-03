@@ -1,21 +1,23 @@
-/**
- * Configure your Gatsby site with this file.
- *
- * See: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/
- */
-
-/**
- * @type {import('gatsby').GatsbyConfig}
- */
 module.exports = {
+  pathPrefix: "/gatsby-jamstack-roberto",
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
-    siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
+    title: `Blog Jamstack do Roberto`,
+    description: `Projeto de pós-graduação: Front-end Jamstack com Gatsby.`,
+    siteUrl: `https://robertofarias86.github.io/gatsby-jamstack-roberto`, 
+    image: `/hero.jpg`,
+    author: `Roberto Carlos Dias de Lucena Farias`,
   },
   plugins: [
     `gatsby-plugin-image`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `posts`,
+        path: `${__dirname}/content/posts`,
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -23,21 +25,31 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: `gatsby-transformer-remark`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
-        start_url: `/`,
-        background_color: `#663399`,
-        // This will impact how browsers show your PWA/website
-        // https://css-tricks.com/meta-theme-color-and-trickery/
-        // theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        plugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 800,
+            },
+          },
+        ],
       },
     },
+    `gatsby-plugin-sitemap`,
+    {
+  resolve: `gatsby-plugin-robots-txt`,
+  options: {
+    host: `https://robertofarias86.github.io/gatsby-jamstack-roberto`,
+    sitemap: `https://robertofarias86.github.io/gatsby-jamstack-roberto/sitemap.xml`,
+    policy: [{ userAgent: "*", allow: "/" }],
+  },
+},
+    {
+      resolve: `gatsby-plugin-styled-components`,
+      options: {},
+    },
   ],
-}
+};
