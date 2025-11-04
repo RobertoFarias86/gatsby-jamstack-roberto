@@ -5,7 +5,7 @@ const Footer = () => {
     <footer className="site-footer">
       <div className="container">
         <p>
-          © {new Date().getFullYear()} - Front-end Jamstack com Gatsby - Roberto
+          © {new Date().getFullYear()} - Projeto - Roberto
           
         </p>
       </div>
