@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://robertofarias86.github.io/gatsby-jamstack-roberto/sitemap.xml
+Host: https://robertofarias86.github.io
